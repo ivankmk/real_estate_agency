@@ -35,7 +35,7 @@ class Flat(models.Model):
     new_building = models.NullBooleanField(
         'Является ли новостройкой', db_index=True)
 
-    owner_phone_pure = PhoneNumberField(blank=True, verbose_name="Нормализированный номер владельца")
+    owner_phone_pure = PhoneNumberField(blank=True, verbose_name="Нормализированный номер владельца", null=True)
 
     liked_by = models.ManyToManyField(
         User, blank=True, verbose_name="Кто лайкнул", related_name='liked_posts')
