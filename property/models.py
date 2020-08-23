@@ -34,6 +34,9 @@ class Flat(models.Model):
     new_building = models.NullBooleanField(
         'Является ли новостройкой', db_index=True)
 
+    liked_by = models.ManyToManyField(
+        User, blank=True, verbose_name="Кто лайкнул", related_name='liked_posts')
+
     def __str__(self):
         return f'{self.town}, {self.address} ({self.price}р.)'
 
@@ -47,3 +50,4 @@ class Complain(models.Model):
 
     def __str__(self):
         return f'Пользователь {self.user} пожаловался на {self.flat}'
+
