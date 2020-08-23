@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Flat(models.Model):
@@ -34,6 +35,8 @@ class Flat(models.Model):
     new_building = models.NullBooleanField(
         'Является ли новостройкой', db_index=True)
 
+    owner_phone_pure = PhoneNumberField(blank=True, verbose_name="Нормализированный номер владельца")
+
     liked_by = models.ManyToManyField(
         User, blank=True, verbose_name="Кто лайкнул", related_name='liked_posts')
 
@@ -50,4 +53,3 @@ class Complain(models.Model):
 
     def __str__(self):
         return f'Пользователь {self.user} пожаловался на {self.flat}'
-
